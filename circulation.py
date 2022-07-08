@@ -2,7 +2,7 @@ import folio
 
 
 def check_out(item_barcode, user_barcode, service_point_id):
-    print('Checking out an item %s...')
+    print('Checking out the item %s to the user %s...' % (item_barcode, user_barcode))
     request = folio.post('circulation/check-out-by-barcode', {'itemBarcode': item_barcode,
                                                               'userBarcode': user_barcode,
                                                               'servicePointId': service_point_id})
