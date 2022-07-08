@@ -3,24 +3,6 @@ import circulation
 import users
 
 
-def create_and_check_out_an_item(item_barcode, user_barcode):
-
-    holdings_record_id = '517688fb-d17e-49fa-9cb9-bd83222773e2'
-    material_type_id = '1a54b431-2e4f-452d-9cae-9cee66c9a892'
-    permanent_loan_type = '2b94c631-fca9-4892-a730-03ee529ffe27'
-    service_point_id = '7c5abc9f-f3d7-4856-b8d7-6712462ca007'
-
-    inventory.create_item({'status': {'name': 'Available'}, 'holdingsRecordId': holdings_record_id,
-                           'barcode': item_barcode, 'materialType': {'id': material_type_id},
-                           'permanentLoanType': {'id': permanent_loan_type}})
-
-    circulation.check_out(item_barcode, user_barcode, service_point_id)
-
-
-def create_3000_requests():
-    return None
-
-
 def create_user_and_create_loans(number_of_loans):
     material_type_id = '1a54b431-2e4f-452d-9cae-9cee66c9a892'
     permanent_loan_type = '2b94c631-fca9-4892-a730-03ee529ffe27'
