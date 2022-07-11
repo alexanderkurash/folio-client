@@ -27,13 +27,10 @@ def okapi_headers():
 
 
 def login():
-    global okapi_url
-
     payload = {'tenant': env.tenant, 'username': env.username, 'password': env.password}
     print('Tenant %s: log in as %s/%s...' % (env.tenant, env.username, env.password))
 
-    global okapi_url
-    request = requests.post('%s/authn/login' % okapi_url, json=payload, headers=okapi_headers())
+    request = requests.post('%s/authn/login' % env.okapi_url, json=payload, headers=okapi_headers())
 
     status = request.status_code
 
@@ -47,8 +44,8 @@ def login():
 
 
 def get(path):
-    return requests.get('%s/%s' % (okapi_url, path), headers=okapi_headers())
+    return requests.get('%s/%s' % (env.okapi_url, path), headers=okapi_headers())
 
 
 def post(path, json):
-    return requests.post('%s/%s' % (okapi_url, path), json=json, headers=okapi_headers())
+    return requests.post('%s/%s' % (env.okapi_url, path), json=json, headers=okapi_headers())

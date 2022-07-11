@@ -17,7 +17,7 @@ def create_user_and_create_loans(number_of_loans):
 
     holdings_record_id = holdings_record['id']
 
-    for i in range(1, number_of_loans):
+    for i in range(1, number_of_loans + 1):
         print('Creating loan #%d' % i)
 
         item_barcode = '10000%d' % i
