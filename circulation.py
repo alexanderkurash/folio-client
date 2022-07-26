@@ -12,4 +12,5 @@ def check_out(item_barcode, user_barcode, service_point_id):
         return request.json()
     else:
         print('Failed to check out an item')
+        print(request.text)
 

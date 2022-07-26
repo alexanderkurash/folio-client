@@ -32,6 +32,7 @@ def create_item(item):
         return request.json()
     else:
         print('Failed to create an item')
+        print(request.text)
 
 
 def create_instance(title, instanceTypeId):

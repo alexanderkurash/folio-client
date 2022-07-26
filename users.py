@@ -1,4 +1,5 @@
 import folio
+import uuid
 
 
 def create_user(first_name, last_name, barcode, email):
@@ -12,7 +13,7 @@ def create_user(first_name, last_name, barcode, email):
         },
         'barcode': barcode,
         'patronGroup': '3684a786-6671-4268-8ed0-9db82ebca60b',
-        'id': 'd22cec88-dfa8-4570-9f91-ccfc5e19d02c',
+        'id': str(uuid.uuid4()),
         'departments': []
     }
 
@@ -24,4 +25,5 @@ def create_user(first_name, last_name, barcode, email):
         return request.json()
     else:
         print('Failed to create a user')
+        print(request.text)
 
