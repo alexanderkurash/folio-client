@@ -77,3 +77,29 @@ def create_holdings_record(instance_id, sourceId, permanentLocationId):
         return request.json()
     else:
         print('Failed to create a holdings record')
+
+
+def get_material_type_id_by_name(name):
+    return folio.find_id('material-types', 'name', name, 'mtypes')
+
+
+def get_loan_type_id_by_name(name):
+    return folio.find_id('loan-types', 'name', name, 'loantypes')
+
+
+def get_service_point_id_by_name(name):
+    return folio.find_id('service-points', 'code', name, 'servicepoints')
+
+
+def get_instance_type_id_by_name(name):
+    return folio.find_id('instance-types', 'name', name, 'instanceTypes')
+
+
+def get_holdings_record_source_id_by_name(name):
+    return folio.find_id('holdings-sources', 'name', name, 'holdingsRecordsSources')
+
+
+def get_location_id_by_name(name):
+    return folio.find_id('locations', 'name', name, 'locations')
+
+

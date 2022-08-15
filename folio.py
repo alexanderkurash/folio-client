@@ -49,3 +49,26 @@ def get(path):
 
 def post(path, json):
     return requests.post('%s/%s' % (env.okapi_url, path), json=json, headers=okapi_headers())
+
+
+def find(path, param_name, param_value, objects_key):
+    request = get('%s?query=%s==%s' % (path, param_name, param_value))
+    if request.status_code == 200:
+        if len(request.json()[objects_key]) == 1:
+            return request.json()[objects_key][0]
+        else:
+            print("Failed to find %s by %s=%s" % (path, param_name, param_value))
+            print(request.url)
+            print(request.text)
+    else:
+        print('Failed to fetch %s' % path)
+
+
+def find_id(path, param_name, param_value, objects_key):
+    obj = find(path, param_name, param_value, objects_key)
+    if obj is not None:
+        return obj['id']
+    else:
+        print("Failed to find %s ID by %s=%s" % (path, param_name, param_value))
+        return
+
