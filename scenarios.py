@@ -1,6 +1,7 @@
 import inventory
 import circulation
 import users
+import patron
 
 
 # def create_user_and_items(number_of_items):
@@ -84,9 +85,9 @@ def create_user_and_create_loans(number_of_loans, user_barcode, patron_group, ti
         return
 
     user = users.get_or_create_user_by_barcode(user_barcode,
-                                               'fcli-first-%s' % user_barcode,
-                                               'fcli-last-%s' % user_barcode,
-                                               'fcli-%s@epam.com' % user_barcode,
+                                               '%s-firstname' % user_barcode,
+                                               '%s-lastname' % user_barcode,
+                                               '%s@epam.com' % user_barcode,
                                                patron_group)
     if user is not None:
         print('Found user %s, ID: %s' % (user_barcode, user['id']))
@@ -119,6 +120,23 @@ def create_user_and_create_loans(number_of_loans, user_barcode, patron_group, ti
 
         circulation.check_out(item['barcode'], user['barcode'], check_out_service_point_id)
 
+
+def create_instance_request(patron_id, instance_id, pickup_location_id):
+    request_creation_result = patron.create_instance_request(patron_id, instance_id, pickup_location_id)
+    print(request_creation_result)
+
+
+def create_instance_and_holding_record_with_no_items(title, instance_type_name, holdings_record_source_name,
+                                                     location_name):
+
+    instance_type_id = inventory.get_instance_type_id_by_name(instance_type_name)
+    source_id = inventory.get_holdings_record_source_id_by_name(holdings_record_source_name)
+    permanent_location_id = inventory.get_location_id_by_name(location_name)
+
+    instance = inventory.create_instance(title, instance_type_id)
+    holdings_record = inventory.create_holdings_record(instance['id'], source_id, permanent_location_id)
+    holdings_record_id = holdings_record['id']
+    return holdings_record_id
 
 # def create_loans(user_barcode, item_barcode_prefix, number_of_loans):
 #     material_type_id = '1a54b431-2e4f-452d-9cae-9cee66c9a892'

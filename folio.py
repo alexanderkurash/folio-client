@@ -67,8 +67,9 @@ def find(path, param_name, param_value, objects_key):
 def find_id(path, param_name, param_value, objects_key):
     obj = find(path, param_name, param_value, objects_key)
     if obj is not None:
+        print('Found %s by criteria %s=%s. ID: %s' % (path, param_name, param_value, obj['id']))
         return obj['id']
     else:
-        print("Failed to find %s ID by %s=%s" % (path, param_name, param_value))
+        print("Failed to find %s ID by criteria %s=%s" % (path, param_name, param_value))
         return
 

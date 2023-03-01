@@ -48,7 +48,8 @@ def create_instance(title, instanceTypeId):
         'precedingTitles': [],
         'succeedingTitles': [],
         'parentInstances': [],
-        'childInstances': []
+        'childInstances': [],
+        "contributors": []
     }
 
     print('Creating an instance...')
