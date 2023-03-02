@@ -121,9 +121,31 @@ def create_user_and_create_loans(number_of_loans, user_barcode, patron_group, ti
         circulation.check_out(item['barcode'], user['barcode'], check_out_service_point_id)
 
 
-def create_instance_request(patron_id, instance_id, pickup_location_id):
-    request_creation_result = patron.create_instance_request(patron_id, instance_id, pickup_location_id)
+def create_instance_request(user_barcode, patron_group, instance_id, pickup_location_name):
+    user = users.get_or_create_user_by_barcode(user_barcode,
+                                               '%s-firstname' % user_barcode,
+                                               '%s-lastname' % user_barcode,
+                                               '%s@epam.com' % user_barcode,
+                                               patron_group)
+
+    pickup_location_id = inventory.get_service_point_id_by_name(pickup_location_name)
+    request_creation_result = patron.create_instance_request(user['id'], instance_id, pickup_location_id)
     print(request_creation_result)
+    return request_creation_result
+
+
+def create_and_cancel_instance_request(user_barcode, patron_group, instance_id, pickup_location_name):
+    user = users.get_or_create_user_by_barcode(user_barcode,
+                                               '%s-firstname' % user_barcode,
+                                               '%s-lastname' % user_barcode,
+                                               '%s@epam.com' % user_barcode,
+                                               patron_group)
+    pickup_location_id = inventory.get_service_point_id_by_name(pickup_location_name)
+    request = patron.create_instance_request(user['id'], instance_id, pickup_location_id)
+    print(request)
+
+    cancelled_request = patron.cancel_instance_request(request, user)
+    print(cancelled_request)
 
 
 def create_instance_and_holding_record_with_no_items(title, instance_type_name, holdings_record_source_name,

@@ -29,10 +29,10 @@ test_num = 1
 #                                        holdings_record_source_name='FOLIO',
 #                                        location_name='testloc')
 
-scenarios.create_instance_and_holding_record_with_no_items(title='FC %d' % test_num,
-                                                           instance_type_name='text',
-                                                           holdings_record_source_name='FOLIO',
-                                                           location_name='Main Library')
+# scenarios.create_instance_and_holding_record_with_no_items(title='FC %d' % test_num,
+#                                                            instance_type_name='text',
+#                                                            holdings_record_source_name='FOLIO',
+#                                                            location_name='Main Library')
 
 # for MG BugFest
 # scenarios.create_user_and_create_loans(number_of_loans=3,
@@ -75,7 +75,8 @@ scenarios.create_instance_and_holding_record_with_no_items(title='FC %d' % test_
 
 # scenarios.exp()
 
-# scenarios.create_instance_request(patron_id='8125dd1b-6bb1-4bd4-ab8f-a72f82feb352',
-#                                   instance_id='025d890d-5661-4dec-92df-476c81e24610',
-#                                   pickup_location_id='3a40852d-49fd-4df2-a1f9-6e2641a6e91f')
+scenarios.create_and_cancel_instance_request(user_barcode='fcu-%d' % test_num,
+                                             patron_group='staff',
+                                             instance_id='14842f25-3a63-4e9d-b501-51776963552e',
+                                             pickup_location_name='cd1')
 
