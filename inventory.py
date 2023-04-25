@@ -67,7 +67,8 @@ def create_holdings_record(instance_id, sourceId, permanentLocationId):
     payload = {
         'instanceId': instance_id,
         'sourceId': sourceId,
-        'permanentLocationId': permanentLocationId
+        'permanentLocationId': permanentLocationId,
+        'callNumber': 'holdingsCallNumber'
     }
 
     print('Creating a holdings record...')
