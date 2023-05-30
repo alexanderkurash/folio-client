@@ -27,7 +27,9 @@ def okapi_headers():
 
 
 def login():
-    payload = {'tenant': env.tenant, 'username': env.username, 'password': env.password}
+    payload = {'username': env.username, 'password': env.password}
+    if not env.consortia_enabled:
+        payload['tenant'] = env.tenant
     print('Tenant %s: log in as %s/%s...' % (env.tenant, env.username, env.password))
 
     request = requests.post('%s/authn/login' % env.okapi_url, json=payload, headers=okapi_headers())

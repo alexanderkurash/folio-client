@@ -6,6 +6,8 @@ This library helps to communicate with the FOLIO API and automate some manual ta
 - creating loans (check out)
 - etc.
 
+Python 3 is required. `requests` module needs to be installed too: `pip3 install requests`
+
 # env.py
 
 env.py file with your env details and user credentials needs to be created in the root dir:

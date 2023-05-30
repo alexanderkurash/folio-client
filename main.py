@@ -6,17 +6,17 @@ folio.login()
 test_id = '1'
 
 # for Snapshot
-# scenarios.create_user_and_create_loans(number_of_loans=5,
-#                                        user_barcode='fcu-%s' % test_id,
-#                                        patron_group='staff',
-#                                        title='FC %s' % test_id,
-#                                        item_barcode_prefix='fci-%s-' % test_id,
-#                                        material_type_name='video recording',
-#                                        permanent_loan_type_name='Can circulate',
-#                                        service_point_name='cd1',
-#                                        instance_type_name='text',
-#                                        holdings_record_source_name='FOLIO',
-#                                        location_name='Main Library')
+scenarios.create_user_and_create_loans(number_of_loans=1,
+                                       user_barcode='fcu-%s' % test_id,
+                                       patron_group='staff',
+                                       title='FC %s' % test_id,
+                                       item_barcode_prefix='fci-%s-' % test_id,
+                                       material_type_name='video recording',
+                                       permanent_loan_type_name='Can circulate',
+                                       service_point_name='cd1',
+                                       instance_type_name='text',
+                                       holdings_record_source_name='FOLIO',
+                                       location_name='Main Library')
 
 # scenarios.create_instance_and_holding_record_with_no_items(title='FC %d' % test_num,
 #                                                            instance_type_name='text',
