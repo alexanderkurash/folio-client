@@ -26,6 +26,25 @@ def okapi_headers():
     return headers
 
 
+def login_with_expiry():
+    payload = {'username': env.username, 'password': env.password}
+    if not env.consortia_enabled:
+        payload['tenant'] = env.tenant
+    print('Tenant %s: log in as %s/%s...' % (env.tenant, env.username, env.password))
+
+    request = requests.post('%s/authn/login-with-expiry' % env.okapi_url, json=payload, headers=okapi_headers())
+
+    status = request.status_code
+
+    if status == 201:
+        print('Logged in')
+        global okapi_token, refresh_token
+        okapi_token = request.cookies['folioAccessToken']
+        refresh_token = request.cookies['folioRefreshToken']
+    else:
+        print('Failed to log in')
+
+
 def login():
     payload = {'username': env.username, 'password': env.password}
     if not env.consortia_enabled:

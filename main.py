@@ -1,19 +1,19 @@
 import folio
 import scenarios
 
-folio.login()
+folio.login_with_expiry()
 
 test_id = '1'
 
 # for Snapshot
-scenarios.create_user_and_create_loans(number_of_loans=1,
+scenarios.create_user_and_create_loans(number_of_loans=2,
                                        user_barcode='fcu-%s' % test_id,
                                        patron_group='staff',
                                        title='FC %s' % test_id,
                                        item_barcode_prefix='fci-%s-' % test_id,
                                        material_type_name='video recording',
                                        permanent_loan_type_name='Can circulate',
-                                       service_point_name='cd1',
+                                       service_point_name='aksp1',
                                        instance_type_name='text',
                                        holdings_record_source_name='FOLIO',
                                        location_name='Main Library')
