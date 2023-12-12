@@ -18,6 +18,7 @@ origin = 'https://folio-ui-url'
 tenant = 'tenant'
 username = 'username'
 password = 'password'
+consortia_enabled = False
 </pre>
 
 This file is added to .gitignore, DO NOT push you credentials to GitHub
