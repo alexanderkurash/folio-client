@@ -1,5 +1,6 @@
 import folio
 import uuid
+import env
 
 
 def create_user(barcode, first_name, last_name, email, patron_group_name):
@@ -24,7 +25,12 @@ def create_user(barcode, first_name, last_name, email, patron_group_name):
         'departments': []
     }
 
+    if env.consortia_enabled:
+        payload['type'] = 'staff'
+        payload['username'] = str(uuid.uuid4())
+
     print('Creating a user...')
+    # print(payload)
     request = folio.post('users', payload)
     if request.status_code == 201:
         user_id = request.json()['id']

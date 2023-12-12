@@ -3,13 +3,16 @@ import datetime
 
 
 def check_out(item_barcode, user_barcode, service_point_id):
+    checkout_start_dt = datetime.datetime.now()
     print('Checking out the item %s to the user %s...' % (item_barcode, user_barcode))
     request = folio.post('circulation/check-out-by-barcode', {'itemBarcode': item_barcode,
                                                               'userBarcode': user_barcode,
                                                               'servicePointId': service_point_id})
+    checkout_response_received_dt = datetime.datetime.now()
+    exec_time_seconds = (checkout_response_received_dt - checkout_start_dt).total_seconds()
     if request.status_code == 201:
         loan_id = request.json()['id']
-        print("Succeeded to check out an item. Loan ID: %s" % loan_id)
+        print("Succeeded to check out an item. Loan ID: %s, exec time: %s" % (loan_id, exec_time_seconds))
         return request.json()
     else:
         print('Failed to check out an item')
